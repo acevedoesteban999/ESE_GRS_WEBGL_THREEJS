@@ -3,19 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THREEJS</title>
+    <title>ESE_GRS_WEBGL_THEEJS</title>
+    <link rel="stylesheet" href="./Boostrap/bootstrap.min.css"  >
 </head>
-<body>
-   <div>
-    <button id="btn1">Angule 1</button>
-    <button id="btn2">Angule 2</button>
-    <button id="btn3">Angule 3</button>
-    <button id="btn4">Angule 4</button>
-    <button id="btn5">Angule 5</button>
-    <button id="btn6">Angule 6</button>
+<body style="background-color: lavender;">
+    <div id="row1" class="row">
+        <h1 style="text-align: center;">ESE_GRS_WEBGL_THREEJS</h1>
+    </div>
+    <div id="row2" class="row">
+        <div class="col-4">
+            <div class="row" style="text-align: center;">
+                <div class="col">
+                    <h2>Conectar al Socket</h2>
+                    <input type="text" placeholder="Socket ip">
+                    <input type="number" placeholder="Puerto">
+                </div>
+            </div>
+            <div class="row"style="text-align: center;">
+                <div class="col"  style="text-align: center;">
+                    <button  id="btn1"class="btn btn-primary" style="width: auto;">Conectar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-8" style="text-align: center;">
+            <div class="row">
+                <h5>Angulos</h5>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button id="btnAdd1"class="btn btn-secondary" style="width: 10%;">1+</button>
+                    <button id="btnAdd2"class="btn btn-secondary" style="width: 10%;">2+</button>
+                    <button id="btnAdd3"class="btn btn-secondary" style="width: 10%;">3+</button>
+                    <button id="btnAdd4"class="btn btn-secondary" style="width: 10%;">4+</button>
+                    <button id="btnAdd5"class="btn btn-secondary" style="width: 10%;">5+</button>
+                    <button id="btnAdd6"class="btn btn-secondary" style="width: 10%;">6+</button>
+                </div>
+            <div class="row-0">
+                <div class="col">
+                    <button id="btnAdd7"class="btn btn-secondary" style="width: 10%;">1-</button>
+                    <button id="btnAdd8"class="btn btn-secondary" style="width: 10%;">2-</button>
+                    <button id="btnAdd9"class="btn btn-secondary" style="width: 10%;">3-</button>
+                    <button id="btnAdd10"class="btn btn-secondary" style="width: 10%;">4-</button>
+                    <button id="btnAdd11"class="btn btn-secondary" style="width: 10%;">5-</button>
+                    <button id="btnAdd12"class="btn btn-secondary" style="width: 10%;">6-</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button  id="Redirecc"class="btn btn-secondary">Redireccionar</button>
+                    <input id="autRot"type="checkbox" checked="true">
+                    <label for="autRot">Auto.Rot</label>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+    
+    </div>  
+    <div  class="row"id="threejs"></div>     
 
-   </div>
-   
+    
    <script src="./index.js" type="module"></script>
+   <script src="./Boostrap/bootstrap.min.js"></script>
    </body>
 </html>

@@ -6,7 +6,7 @@ var scene,camera,renderer;
 var obj=new Array(13),loader,loaderMTL;
 var control;
 var angules=new Array(6),EndCarga=false;
-
+var Rot=true;
 angules[0]=0;
 angules[1]=13.8*Math.PI/180;
 angules[2]=44.5*Math.PI/180;
@@ -15,42 +15,45 @@ angules[4]=90*Math.PI/180;
 angules[5]=2.04*Math.PI/180;
 
 /////////////EVENTOS//////////////////////  
-document.getElementById('btn1').addEventListener(
-    "click",()=>{
-        angules[0]+=15*Math.PI/180,ActAngules();
+document.getElementById('btnAdd1').addEventListener("click",()=>{angules[0]+=15*Math.PI/180,ActAngules();
     }
 )
-document.getElementById('btn2').addEventListener(
-    "click",()=>{
-        angules[1]+=15*Math.PI/180,ActAngules();
+document.getElementById('btnAdd2').addEventListener("click",()=>{angules[1]+=15*Math.PI/180,ActAngules();
     }
-)   
-document.getElementById('btn3').addEventListener(
-    "click",()=>{
-        angules[2]+=15*Math.PI/180,ActAngules();
+)
+document.getElementById('btnAdd3').addEventListener("click",()=>{angules[2]+=15*Math.PI/180,ActAngules();
     }
-    )
-document.getElementById('btn4').addEventListener(
-    "click",()=>{
-        angules[3]+=15*Math.PI/180,ActAngules();
-    }
-    )
-document.getElementById('btn5').addEventListener(
-        "click",()=>{
-            angules[4]+=15*Math.PI/180,ActAngules();
-        }
-        )
-document.getElementById('btn6').addEventListener(
-    "click",()=>{
-        angules[5]+=15*Math.PI/180,ActAngules();
-    }
-    )
+)
+document.getElementById('btnAdd4').addEventListener("click",()=>{angules[3]+=15*Math.PI/180,ActAngules();}
+)
+document.getElementById('btnAdd5').addEventListener("click",()=>{angules[4]+=15*Math.PI/180,ActAngules();}
+)
+document.getElementById('btnAdd6').addEventListener("click",()=>{angules[5]+=15*Math.PI/180,ActAngules();}
+)
+document.getElementById('btnAdd7').addEventListener("click",()=>{angules[0]-=15*Math.PI/180,ActAngules();}
+)
+document.getElementById('btnAdd8').addEventListener("click",()=>{angules[1]-=15*Math.PI/180,ActAngules();}
+)
+document.getElementById('btnAdd9').addEventListener("click",()=>{angules[2]-=15*Math.PI/180,ActAngules();}
+)
+document.getElementById('btnAdd10').addEventListener("click",()=>{angules[3]-=15*Math.PI/180,ActAngules();}
+)
+document.getElementById('btnAdd11').addEventListener("click",()=>{angules[4]-=15*Math.PI/180,ActAngules();}
+)
+document.getElementById('btnAdd12').addEventListener("click",()=>{angules[5]-=15*Math.PI/180,ActAngules();}
+)
+document.getElementById('Redirecc').addEventListener("click",()=>{Redirecc();}
+)
+document.getElementById("autRot").addEventListener("click",()=>{
+    Rot=document.getElementById("autRot").checked;
+})
+
 window.addEventListener(
     'resize',()=>{
         console.log('asd');
-        camera.aspect=window.innerWidth/window.innerHeight;
+        camera.aspect=GetSize();
         camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth,window.innerHeight);
+        renderer.setSize(window.innerWidth,GetSizeH());
         renderer.render(scene,camera);
     })
 /////////////FUNCTIONS////////////////////
@@ -58,10 +61,10 @@ function init()
 {
     scene=new THREE.Scene();
     scene.background=new THREE.Color(0x2a3b4c);
-    camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight);
+    camera=new THREE.PerspectiveCamera(75,GetSize());
     renderer=new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth,window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+    renderer.setSize(window.innerWidth,GetSizeH());
+    document.getElementById("threejs").appendChild(renderer.domElement);    
     control=new OrbitControls(camera,renderer.domElement);
     camera.position.z=500;
     scene.rotateX(45);
@@ -198,15 +201,34 @@ function animate()
 {
     requestAnimationFrame(animate);
     renderer.render(scene,camera);
-    if(EndCarga)
+    if(EndCarga && Rot)
     { 
-        angules[0]+=0.005;
+        angules[0]+=0.01;
         ActAngules();
     }
     
     
     
 }
+function GetSize()
+{
+    return (window.innerWidth)/(window.innerHeight-window.innerHeight*0.05-document.getElementById("row1").clientHeight-document.getElementById("row2").clientHeight);
+}
+function GetSizeH()
+{
+    return window.innerHeight-window.innerHeight*0.05-document.getElementById("row1").clientHeight-document.getElementById("row2").clientHeight;
+}
+function Redirecc()
+{
+    angules[0]=0;
+    angules[1]=13.8*Math.PI/180;
+    angules[2]=44.5*Math.PI/180;
+    angules[3]=-2.04*Math.PI/180;
+    angules[4]=90*Math.PI/180;
+    angules[5]=2.04*Math.PI/180;
+    ActAngules();
+}
+
 //////////////Main////////////////////
 loAd();
 init();
