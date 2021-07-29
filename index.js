@@ -53,7 +53,7 @@ window.addEventListener(
         console.log('asd');
         camera.aspect=GetSize();
         camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth,GetSizeH());
+        renderer.setSize(GetSizeW(),GetSizeH());
         renderer.render(scene,camera);
     })
 /////////////FUNCTIONS////////////////////
@@ -63,7 +63,7 @@ function init()
     scene.background=new THREE.Color(0x2a3b4c);
     camera=new THREE.PerspectiveCamera(75,GetSize());
     renderer=new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth,GetSizeH());
+    renderer.setSize(GetSizeW(),GetSizeH());
     document.getElementById("threejs").appendChild(renderer.domElement);    
     control=new OrbitControls(camera,renderer.domElement);
     camera.position.z=500;
@@ -212,11 +212,20 @@ function animate()
 }
 function GetSize()
 {
-    return (window.innerWidth)/(window.innerHeight-window.innerHeight*0.05-document.getElementById("row1").clientHeight-document.getElementById("row2").clientHeight);
+    return (GetSizeW())/GetSizeH();
 }
 function GetSizeH()
 {
-    return window.innerHeight-window.innerHeight*0.05-document.getElementById("row1").clientHeight-document.getElementById("row2").clientHeight;
+    let toReturn=window.innerHeight-window.innerHeight*0.05-document.getElementById("row1").clientHeight-document.getElementById("row2").clientHeight;
+    if(toReturn<500)
+        return 500;
+    return toReturn; 
+}
+function GetSizeW()
+{
+    if(window.innerWidth<500)
+    return 500;
+    return window.innerWidth;
 }
 function Redirecc()
 {
